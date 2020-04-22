@@ -8,15 +8,16 @@
 
 import UIKit
 
-class Alarm {
+class Alarm: Codable {
     var name: String
     var enabled: Bool
     var uuid: String
     var fireDate: Date
     var fireTimeAsString: String {
-            let formatter3 = DateFormatter()
-            formatter3.timeStyle = .short
-            return formatter3.string(from: fireDate)
+        let formatter3 = DateFormatter()
+        formatter3.timeStyle = .short
+        formatter3.dateFormat = .none
+        return formatter3.string(from: fireDate)
     }
     
     init(name: String, enabled: Bool, uuid: String = UUID().uuidString, fireDate: Date ) {

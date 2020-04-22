@@ -10,10 +10,25 @@ import UIKit
 
 class AlarmListTableViewController: UITableViewController {
     
+    fileprivate var segueIdentifier: String = "alarmSegue"
+    fileprivate var cellIdentifier: String = "alarmCell"
     
-
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // MARK: Lifecycle functions
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     override func viewDidLoad() {
         super.viewDidLoad()
+        AlarmController.sharedInstance.loadFromPersistentStore()
+        updateView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateView()
+    }
+    
+    func updateView() {
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -26,7 +41,7 @@ class AlarmListTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as? SwitchTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SwitchTableViewCell else { return UITableViewCell() }
 
         let alarm = AlarmController.sharedInstance.alarms[indexPath.row]
         cell.updateViews(with: alarm)
@@ -60,41 +75,16 @@ class AlarmListTableViewController: UITableViewController {
     
     // MARK: - Navigation Segue to Details Screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "alarmSegue" {
+        if segue.identifier == segueIdentifier {
             guard let indexPath = tableView.indexPathForSelectedRow, let dstVC = segue.destination as? AlarmDetailTableViewController else { return }
             print("\(AlarmController.sharedInstance.alarms.count)")
             let alarm = AlarmController.sharedInstance.alarms[indexPath.row]
             dstVC.alarm = alarm
+            dstVC.title = alarm.name
         }
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
- 
-    
-
-}
+} // EoF
 
 
 extension AlarmListTableViewController: SwitchCellDelegate {
@@ -104,4 +94,4 @@ extension AlarmListTableViewController: SwitchCellDelegate {
         AlarmController.sharedInstance.alarmEnabled(for: alarm)  // What should we use sharedInstance or static fucn alarmEnabled
         cell.updateViews(with: alarm)
     }
-}
+} // EoF

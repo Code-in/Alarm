@@ -79,7 +79,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5xJ-8M-JUp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128.8" y="62.518740629685162"/>
+            <point key="canvasLocation" x="927" y="63"/>
         </scene>
         <!--Rise and Shine-->
         <scene sceneID="uax-HZ-EvX">
@@ -193,7 +193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zah-Iv-JPo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1829.5999999999999" y="62.518740629685162"/>
+            <point key="canvasLocation" x="1810" y="63"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TcZ-Wz-yxR">
@@ -211,10 +211,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vxK-Pu-ogi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="378" y="63"/>
+            <point key="canvasLocation" x="90" y="63"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VbO-rj-xBM"/>
+        <segue reference="Ktg-vW-tpN"/>
     </inferredMetricsTieBreakers>
 </document>
